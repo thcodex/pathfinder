@@ -33,6 +33,15 @@ class Node:
                 self.color = ORANGE
             case "barrier":
                 self.color = BLACK
+            case "closed":
+                self.color = RED
+            case "open":
+                self.color = GREEN
+            case "path":
+                self.color = PURPLE
+
+    def is_barrier(self):
+        return self.color == BLACK
 
     def reset(self):
         self.color = WHITE
@@ -44,10 +53,23 @@ class Node:
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.width))
 
     def update_neighbors(self, grid):
-        pass
+        self.neighbors = []
+        
+        # DOWN
+        if self.row < self.total_rows - 1 and not grid[self.row + 1][self.col].is_barrier():
+            self.neighbors.append(grid[self.row + 1][self.col])
+        # UP
+        if self.row > 0 and not grid[self.row - 1][self.col].is_barrier():
+            self.neighbors.append(grid[self.row - 1][self.col])
+        # RIGHT
+        if self.col < self.total_rows - 1 and not grid[self.row][self.col + 1].is_barrier():
+            self.neighbors.append(grid[self.row][self.col + 1])
+        # LEFT
+        if self.col > 0 and not grid[self.row][self.col - 1].is_barrier():
+            self.neighbors.append(grid[self.row][self.col - 1])
 
     def __lt__(self, other):
-        pass
+        return False
 
 
 # Creating our grid with nodes
@@ -62,3 +84,9 @@ def make_grid(rows, width):
             grid[i].append(node)
 
     return grid
+
+def build_path(came_from, current, draw):
+    while current in came_from:
+        current = came_from[current]
+        current.change_color("path")
+        draw()
