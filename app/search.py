@@ -1,7 +1,7 @@
 """ This module implement the search algorithm for this pathfinder """
 from queue import PriorityQueue
 import pygame
-from node import build_path
+from .node import build_path
 
 
 # Defining heuristic function

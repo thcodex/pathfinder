@@ -1,4 +1,4 @@
-from ui import game_loop
+from app.ui import game_loop
 import pygame
 
 

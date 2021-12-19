@@ -1,6 +1,6 @@
 import pygame
-from node import make_grid
-from search import search_algorithm
+from .node import make_grid
+from .search import search_algorithm
 
 
 GREY = (126, 126, 126)
@@ -39,6 +39,7 @@ def get_clicked_pos(pos, rows, width):
     return row, col
 
 def game_loop(win, width):
+    """Main loop for the visualizer."""
     ROWS = 50
     grid = make_grid(ROWS, width)
 
