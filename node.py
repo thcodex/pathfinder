@@ -23,31 +23,19 @@ class Node:
         self.color = WHITE
         self.neighbors = []
         self.total_rows = total_rows
-        self.type = ""
-
-    @property
-    def type(self):
-        return self.state
-
-    @type.setter
-    def type(self, value):
-        self.type = value
-        # setting color to whatever node type is
-        match value:
-            case "open":
-                self.color = GREEN
+        
+    def change_color(self, type):
+        """Change color of node"""
+        match type:
+            case "start":
+                self.color = TURQUOISE
+            case "end":
+                self.color = ORANGE
             case "barrier":
                 self.color = BLACK
-            case "closed":
-                self.color = RED
-            case "start":
-                self.color = ORANGE
-            case "end":
-                self.color = TURQUOISE
-            case "path":
-                self.color = PURPLE
-            case _:
-                self.color = WHITE
+
+    def reset(self):
+        self.color = WHITE
 
     def get_pos(self):
         return self.row, self.col
