@@ -4,12 +4,11 @@ import pygame
 # Colors that will be used
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
+RED = (91, 12, 12)
+BLUE = (38, 126, 250)
 GREEN = (0, 255, 0)
-PURPLE = (128, 0, 128)
-ORANGE = (255, 165, 0)
-TURQUOISE = (64, 224, 208)
+PURPLE = (170, 47, 236)
+ORANGE = (255, 109, 1)
 
 class Node:
     """Class for every node in our visualizer"""
@@ -28,7 +27,7 @@ class Node:
         """Change color of node"""
         match type:
             case "start":
-                self.color = TURQUOISE
+                self.color = BLUE
             case "end":
                 self.color = ORANGE
             case "barrier":
